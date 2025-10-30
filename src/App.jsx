@@ -214,7 +214,7 @@ export default function App() {
   const handleAnswer = (option) => {
     if (option.correct) {
       setMessage(option.msg);
-      isFirstTry ? setPoints(points => points += 1) : setPoints(points);
+      isFirstTry ? setPoints(points => points >= 18 ? 18 : points += 1) : setPoints(points);
       setTimeout(() => {
         setStage(option.next);
         setMessage('');
@@ -246,7 +246,7 @@ export default function App() {
           </div>
         ) : (
           <div className='question'>
-            <h3 style={{ fontSize: '42px', marginBottom: '0' }}>{points > 18 ? 18 : points}/18</h3>
+            <h3 style={{ fontSize: '42px', marginBottom: '0' }}>{points}/18</h3>
             <p>{current.question}</p>
 
           </div>
