@@ -246,7 +246,7 @@ export default function App() {
           </div>
         ) : (
           <div className='question'>
-            <h3 style={{ fontSize: '42px', marginBottom: '0' }}>{points}/18</h3>
+            <h3 style={{ fontSize: '42px', marginBottom: '0' }}>{points > 18 ? 18 : points}/18</h3>
             <p>{current.question}</p>
 
           </div>
