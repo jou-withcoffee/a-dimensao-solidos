@@ -210,14 +210,17 @@ export default function App() {
   const [message, setMessage] = useState('');
   const [isFirstTry, setIsFirstTry] = useState(true);
   const [points, setPoints] = useState(0);
+  const [showOptions, setShowOptions] = useState(true);
 
   const handleAnswer = (option) => {
     if (option.correct) {
       setMessage(option.msg);
-      isFirstTry ? setPoints(points => points >= 18 ? 18 : points += 1) : setPoints(points);
+      setShowOptions(false);
+      isFirstTry ? setPoints(points => points += 1) : setPoints(points);
       setTimeout(() => {
         setStage(option.next);
         setMessage('');
+        setShowOptions(true);
         setIsFirstTry(true);
       }, 1800);
     } else {
@@ -237,7 +240,7 @@ export default function App() {
         current.id != 19 ? (
           <div className='question'>
             <h3>{current.question}</h3>
-            {current.options.map((option, i) => (
+            {showOptions && current.options.map((option, i) => (
               <button key={i} onClick={() => handleAnswer(option)}>
                 {option.text}
               </button>
